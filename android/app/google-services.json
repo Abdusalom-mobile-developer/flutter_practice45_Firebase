@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "32885753230",
+    "project_id": "login-and-sign-up-42375",
+    "storage_bucket": "login-and-sign-up-42375.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:32885753230:android:3a77b763392035746bd0df",
+        "android_client_info": {
+          "package_name": "com.example.flutter_practice45_firabase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGg_UgVQXq9cmc-eTbLrmnHUlr0TsLsvE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
