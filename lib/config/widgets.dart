@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 mixin CustomWidgets {
   Widget textFieldCustom(
-      BuildContext context, String hint, TextEditingController controller,
-      {FocusNode? focusNode}) {
+      BuildContext context, String hint, TextEditingController controller, 
+      {FocusNode? focusNode, bool isHidden = false}) {
     return Container(
       margin: const EdgeInsets.only(top: 17),
       padding: const EdgeInsets.only(left: 9),
@@ -12,6 +12,7 @@ mixin CustomWidgets {
       decoration: BoxDecoration(
           color: Colors.white12, borderRadius: BorderRadius.circular(4)),
       child: TextField(
+        obscureText: isHidden,
         focusNode: focusNode,
         autofocus: true,
         controller: controller,
