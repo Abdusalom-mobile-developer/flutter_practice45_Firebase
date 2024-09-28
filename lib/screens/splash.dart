@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_practice45_firabase/screens/home.dart';
 import 'package:flutter_practice45_firabase/screens/sign_in.dart';
+import 'package:flutter_practice45_firabase/services/auth_service.dart';
 
 class SplashScreen extends StatefulWidget {
   static const String id = "/splash_screen";
@@ -17,9 +19,20 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    checkIfLoggedIn();
+  }
+
+  void checkIfLoggedIn() async {
+    bool isLoggedin = await AuthService.isLoggedIn();
     Timer(
       const Duration(seconds: 2),
-      () => Navigator.pushReplacementNamed(context, SignInScreen.id),
+      () {
+        if (isLoggedin) {
+          Navigator.pushReplacementNamed(context, HomeScreen.id);
+        } else {
+          Navigator.pushReplacementNamed(context, SignInScreen.id);
+        }
+      },
     );
   }
 
