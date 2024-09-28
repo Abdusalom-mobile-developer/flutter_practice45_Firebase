@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_practice45_firabase/config/widgets.dart';
+import 'package:flutter_practice45_firabase/sign_up.dart';
 
 class SignInScreen extends StatefulWidget {
   static const String id = "/sign_in_screen";
@@ -12,14 +13,23 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> with CustomWidgets {
+  final FocusNode _focusNode = FocusNode();
+  @override
+  void initState() {
+    super.initState();
+    _focusNode.requestFocus();
+  }
+
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+        resizeToAvoidBottomInset: false,
+        body: Container(
+          height: double.infinity,
           width: double.infinity,
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
           decoration: BoxDecoration(
               gradient: LinearGradient(begin: Alignment.bottomCenter, colors: [
             Colors.black.withOpacity(0.86),
@@ -27,9 +37,12 @@ class _SignInScreenState extends State<SignInScreen> with CustomWidgets {
             Colors.black.withOpacity(0.817),
           ])),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(
+                height: MediaQuery.of(context).size.width / 3.7,
+              ),
               Text(
                 "Sign in.",
                 style: TextStyle(
@@ -37,8 +50,13 @@ class _SignInScreenState extends State<SignInScreen> with CustomWidgets {
                     fontSize: MediaQuery.of(context).size.width / 10,
                     fontWeight: FontWeight.bold),
               ),
-              textFieldCustom(context, "Email", _emailController),
+              textFieldCustom(context, "Email", _emailController,
+                  focusNode: _focusNode),
               textFieldCustom(context, "Password", _passwordController),
+              customButton(context, () {
+                _emailController.clear();
+                _passwordController.clear();
+              }, "Sign in"),
               SizedBox(
                 height: MediaQuery.of(context).size.width / 15,
               ),
@@ -55,7 +73,9 @@ class _SignInScreenState extends State<SignInScreen> with CustomWidgets {
                     width: MediaQuery.of(context).size.width / 28,
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushReplacementNamed(context, SignUpScreen.id);
+                    },
                     child: Text(
                       "Sign up",
                       style: TextStyle(
@@ -68,17 +88,7 @@ class _SignInScreenState extends State<SignInScreen> with CustomWidgets {
                 ],
               )
             ],
-          )),
-    );
+          ),
+        ));
   }
 }
-
-// Center(
-//           child: Text(
-//                   "Sign in.",
-//                   style: TextStyle(
-//                       color: Colors.white,
-//                       fontSize: MediaQuery.of(context).size.width / 5.7,
-//                       fontWeight: FontWeight.bold),
-//                 ),
-//         ),
